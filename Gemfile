@@ -25,13 +25,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
-group :development, :test do
-  gem 'sqlite3'
-end
-
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+  gem 'better_errors'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'guard-rspec'
 end
 
 # Use ActiveModel has_secure_password
