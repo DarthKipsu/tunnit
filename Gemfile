@@ -24,6 +24,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'bcrypt', '~> 3.1.7'
 
 group :production do
   gem 'pg'
