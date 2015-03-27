@@ -6,16 +6,16 @@ RSpec.describe "users/index", type: :view do
       User.create!(
         :forename => "Forename",
         :surname => "Surname",
-        :email => "Email",
-        :password => "password",
-        :password_confirmation => "password"
+        :email => "@Email",
+        :password => "Password00",
+        :password_confirmation => "Password00"
       ),
       User.create!(
         :forename => "Forename",
         :surname => "Surname",
-        :email => "Email",
-        :password => "password",
-        :password_confirmation => "password"
+        :email => "Ema@il",
+        :password => "Password00",
+        :password_confirmation => "Password00"
       )
     ])
   end
@@ -24,6 +24,7 @@ RSpec.describe "users/index", type: :view do
     render
     assert_select "tr>td", :text => "Forename".to_s, :count => 2
     assert_select "tr>td", :text => "Surname".to_s, :count => 2
-    assert_select "tr>td", :text => "Email".to_s, :count => 2
+    assert_select "tr>td", :text => "@Email".to_s, :count => 1
+    assert_select "tr>td", :text => "Ema@il".to_s, :count => 1
   end
 end
