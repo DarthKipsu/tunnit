@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_signed_in
 
   # GET /projects
   # GET /projects.json
