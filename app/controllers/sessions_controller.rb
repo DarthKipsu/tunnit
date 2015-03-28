@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by email: params[:email]
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to user_path(user), notice: "Welcome back!"
+      redirect_to user_path(user), notice: "Welcome!"
     else
       redirect_to :back, notice: "Email and/or password mismatch"
     end

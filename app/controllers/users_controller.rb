@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_that_signed_in, except: [:new]
+  before_action :ensure_that_signed_in, except: [:new, :create]
 
   # GET /users
   # GET /users.json
@@ -29,6 +29,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        team = Team.create(name: 'Personal projects')
+        @user.teams << team
+        team.users << @user
+        session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
