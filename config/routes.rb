@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'events#index'
+  root 'events#new'
 
   resources :teams
   resources :projects

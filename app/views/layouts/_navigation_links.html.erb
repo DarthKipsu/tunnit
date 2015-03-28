@@ -1,5 +1,5 @@
 <% if not current_user.nil? %>
-    <li><%= link_to 'Add an hour', events_path %></li>
+    <li><%= link_to 'Add an hour', new_event_path %></li>
     <li><%= link_to 'Calendar view', events_path %></li>
     </ul><ul class='nav navbar-right navbar-nav'>
     <li><%= link_to 'Projects', projects_path %></li>
