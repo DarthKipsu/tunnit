@@ -16,6 +16,9 @@ var loadCalendar = function() {
         eventTextColor: '#fff',
         events: '/events.json'
     });
+
+    $('#event-start').tooltip();
+    $('#event-duration').tooltip();
 }
 $(document).ready(loadCalendar);
 $(document).on('page:load', loadCalendar);
