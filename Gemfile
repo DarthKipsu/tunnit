@@ -16,6 +16,7 @@ gem 'momentjs-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 gem "select2-rails"
+gem 'validates_timeliness', '~> 3.0'
 
 group :production do
   gem 'pg'

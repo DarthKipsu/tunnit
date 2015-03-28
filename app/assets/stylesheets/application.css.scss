@@ -53,3 +53,15 @@ main {
         display: none;
     }
 }
+
+.btn-default, .btn-default:visited {
+    color: #fff;
+    background-color: #1abc9c;
+    border-color: #16a085;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+    color: #fff;
+    background-color: #2ecc71;
+    border-color: #27ae60;
+}

@@ -13,7 +13,7 @@
 
   <div class="field">
       <%= f.label :project_id %><br>
-      <%= f.select :project_id, options_from_collection_for_select(@projects, :id, :name, selected: @event.project_id), {}, {class:'select2'} %>
+      <%= f.select :project_id, options_from_collection_for_select(@projects, :id, :name, selected: @event.project), {}, {class:'select2'} %>
   </div>
   <div class="field">
     <%= f.label :start %><br>

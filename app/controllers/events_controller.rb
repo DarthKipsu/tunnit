@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  include DateHelper
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_signed_in
 
@@ -27,14 +28,21 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
-    @event.title = @event.project.name
+    begin
+      start = DateTime.parse(params[:start]) 
+    rescue
+      return redirect_to new_event_path, alert: "Incorrect start time"
+    end
+    endTime = start + parseDuration(params[:time]).minutes
+    title = current_user.projects.find_by_id(params[:project]).name
+    @event = Event.new(start: start, end: endTime, project_id: params[:project], title: title)
 
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
+        @projects = current_user.projects.all
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -73,6 +81,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:start, :end, :project_id)
+      params.permit(:start, :time, :project)
     end
 end

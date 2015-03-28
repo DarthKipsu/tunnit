@@ -1,5 +1,29 @@
-<h1>New Event</h1>
+<br>
+<%= form_for @event, html: {class: 'form-inline'} do |f| %>
+    <% if @event.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-<%= render 'form' %>
+            <ul>
+                <% @event.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
 
-<%= link_to 'Back', events_path %>
+    <div class="form-group">
+        <%= label_tag :project %><br>
+        <%= select_tag :project,
+            options_from_collection_for_select(@projects, :id, :name, selected: @event.project),
+            class:'select2 form-control' %>
+    </div>
+    <div class="form-group">
+        <%= label_tag :start, 'Starting from' %><br>
+        <%= text_field_tag :start, '', class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= label_tag :time, 'Time spent' %><br>
+        <%= text_field_tag :time, '', class: 'form-control' %> <%= f.submit 'Submit', class: 'btn btn-default' %>
+    </div>
+<% end %>
