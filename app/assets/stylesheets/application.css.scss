@@ -62,3 +62,17 @@ main {
 .tooltip > .tooltip-arrow {
     border-bottom: 5px solid #B3E8DE !important;
 }
+
+.no-padding {
+    padding: 0;
+}
+
+.well {
+    background-color: #E8FCF8;
+    border-color: #B3E8DE;
+    margin: 5px;
+}
+
+.well p strong a, .well p strong a:visited, .well ul li a, .well ul li a:visited {
+    color: #16a085;
+}
