@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="field">
+      <%= f.label :project_id %><br>
+      <%= f.select :project_id, options_from_collection_for_select(@projects, :id, :name, selected: @event.project_id), {}, {class:'select2'} %>
+  </div>
+  <div class="field">
     <%= f.label :start %><br>
     <%= f.datetime_select :start %>
   </div>
   <div class="field">
     <%= f.label :end %><br>
     <%= f.datetime_select :end %>
-  </div>
-  <div class="field">
-    <%= f.label :timezone %><br>
-    <%= f.number_field :timezone %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -16,16 +16,19 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @projects = current_user.projects.all
   end
 
   # GET /events/1/edit
   def edit
+    @projects = current_user.projects.all
   end
 
   # POST /events
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.title = @event.project.name
 
     respond_to do |format|
       if @event.save
@@ -70,6 +73,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:start, :end, :timezone)
+      params.require(:event).permit(:start, :end, :project_id)
     end
 end

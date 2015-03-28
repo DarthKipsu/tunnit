@@ -9,7 +9,8 @@ var loadCalendar = function() {
             dow: [ 1, 2, 3, 4, 5]
         },
         scrollTime: '7:00',
-        aspectRatio: 1.7
+        aspectRatio: 1.7,
+        events: '/events.json'
     });
 }
 $(document).ready(loadCalendar);
