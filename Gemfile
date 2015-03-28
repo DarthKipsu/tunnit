@@ -15,6 +15,7 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
+gem "select2-rails"
 
 group :production do
   gem 'pg'
