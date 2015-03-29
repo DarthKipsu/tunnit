@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :user_teams
   has_many :teams, -> { uniq }, through: :user_teams
   has_many :projects, -> { uniq }, through: :teams
+  has_many :events, -> { uniq }, through: :projects
 
   has_secure_password
 
