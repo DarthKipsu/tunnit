@@ -29,6 +29,8 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
+        @team.users << current_user
+        current_user.teams << @team
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.json { render :show, status: :created, location: @team }
       else
@@ -65,7 +67,7 @@ class TeamsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
-      @team = Team.find(params[:id])
+      @team = current_user.teams.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
