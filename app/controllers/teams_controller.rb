@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @teams = current_user.teams.all
+    @teams = current_user.teams.all.order(updated_at: :desc)
   end
 
   # GET /teams/1

@@ -1,9 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-5">
+<h3><%= @team.name %></h3>
+</div>
+<div class="col-md-7">
+    <br>
+    <%= link_to 'New project', new_project_path, class: 'btn btn-default' %>
+    <%= link_to 'Edit team', edit_team_path(@team), class: 'btn btn-default' %>
+    <%= link_to 'Destroy team', team_path(@team), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+</div>
+<div class="col-md-12">
+    <br>
+    <% @team.projects.order(updated_at: :desc).each do |project| %>
+        <p><%= link_to project.name, project %></p>
+    <% end %>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
-
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>

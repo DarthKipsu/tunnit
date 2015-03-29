@@ -3,14 +3,15 @@ Rails.application.routes.draw do
   root 'events#new'
 
   resources :teams
-  resources :projects
-  resources :users
+  resources :projects, except: :index
+  resources :users, except: :index
   resources :events
 
   resource :session, only: [:new, :create, :delete]
 
   get 'signin', to: 'sessions#new'
   get 'signup', to: 'users#new'
+  get 'projects', to: 'teams#index'
   delete 'signout', to: 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.

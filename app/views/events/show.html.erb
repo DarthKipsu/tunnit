@@ -1,15 +1,17 @@
-
-<h1>Event information</h1>
-
+<div class="col-md-5">
+<h3><%= @event.project.name %> event</h3>
 <p>
-  <strong>Start:</strong>
-  <%= @event.start %>
+    <strong>Date:</strong>
+    <%= @event.start.strftime("%A %d.%m.%Y") %>
 </p>
-
 <p>
-  <strong>End:</strong>
-  <%= @event.end %>
+    <strong>Time:</strong>
+    <%= @event.start.strftime("%H:%M") %> - <%= @event.end.strftime("%H:%M") %>
+    (<%= sprintf "%.1f", (@event.end - @event.start) / 3600 %> h)
 </p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+</div>
+<div class="col-md-7">
+    <br>
+<%= link_to 'Edit event', edit_event_path(@event), class: 'btn btn-default' %>
+<%= link_to 'Delete event', event_path(@event), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+</div>

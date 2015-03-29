@@ -1,23 +1,22 @@
-<div class="col-md-12">
 <div class="col-md-6">
     <h3>Teams and projects</h3>
 </div>
 <div class="col-md-6">
     <br>
-    <%= link_to 'Create new Team', new_team_path, class: 'btn btn-default' %>
     <%= link_to 'Create new Project', new_project_path, class: 'btn btn-default' %>
+    <%= link_to 'Create new Team', new_team_path, class: 'btn btn-default' %>
 </div>
-</div>
+<div class="panel-body"></div>
 
-<div class="col-md-12">
-    <% @teams.each do |team| %>
-        <div class="col-md-5 well">
-            <p><strong><%= link_to "Team: #{team.name}", team %></strong></p>
-            <ul>
-                <% team.projects.each do |project| %>
-                    <li><%= link_to project.name, project %></li>
-                <% end %>
-            </ul>
+<% @teams.each do |team| %>
+    <div class="col-md-12 well">
+        <div class="col-md-3">
+            <p><strong><%= link_to "#{team.name}:", team %></strong></p>
         </div>
-    <% end %>
-</div>
+        <div class="col-md-9">
+            <% team.projects.order(updated_at: :desc).each do |project| %>
+                <p><%= link_to project.name, project %></p>
+            <% end %>
+        </div>
+    </div>
+<% end %>

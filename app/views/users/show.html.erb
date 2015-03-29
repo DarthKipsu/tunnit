@@ -1,3 +1,4 @@
+<div class="col-md-6">
 <h3>Your information</h3>
 <p>
 <strong>Name:</strong>
@@ -8,27 +9,32 @@
 <strong>Email:</strong>
 <%= @user.email %>
 </p>
+</div>
 
-<div class="col-md-12 no-padding">
-    <div class="col-md-2 no-padding">
+<div class="col-md-6">
+    <br>
+<%= link_to 'Change password', edit_user_path(@user), class: 'btn btn-default' %>
+</div>
+
+<div class="col-md-12 well">
+    <div class="col-md-2">
         <p><strong>Teams:</strong></p>
     </div>
     <div class="col-md-10">
-        <% @user.teams.each do |team| %>
+        <% @user.teams.order(updated_at: :desc).each do |team| %>
             <p><%= link_to team.name, team %></p>
         <% end %>
     </div>
 </div>
 
-<div class="col-md-12 no-padding">
-    <div class="col-md-2 no-padding">
+<div class="col-md-12 well">
+    <div class="col-md-2">
         <p><strong>Projects:</strong></p>
     </div>
     <div class="col-md-10">
-        <% @user.projects.each do |project| %>
+        <% @user.projects.order(updated_at: :desc).each do |project| %>
             <p><%= link_to project.name, project %></p>
         <% end %>
     </div>
 </div>
 
-<%= link_to 'Change password', edit_user_path(@user), class: 'btn btn-default' %>

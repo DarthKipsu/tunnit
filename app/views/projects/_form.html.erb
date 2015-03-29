@@ -1,25 +1,23 @@
-<%= form_for(@project) do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+<%= form_for @project, html: {class: 'form-inline'} do |f| %>
+    <% if @project.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-      <ul>
-      <% @project.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+            <ul>
+                <% @project.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+        <%= f.label :name %><br>
+        <%= f.text_field :name, class: 'form-control' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-      <%= f.label :team_id %><br>
-      <%= f.select :team_id, options_from_collection_for_select(@teams, :id, :name, selected: @project.team_id), {}, {class:'select2'} %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-group">
+        <%= f.label :team_id %><br>
+        <%= f.select :team_id, options_from_collection_for_select(@teams, :id, :name, selected: @project.team_id), {}, {class:'select2'} %>
+        <%= f.submit 'Done', class: 'btn btn-default' %>
+    </div>
 <% end %>
