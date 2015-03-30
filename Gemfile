@@ -25,6 +25,7 @@ end
 
 group :development do
   gem 'rails_layout'
+  gem 'guard'
 end
 
 group :development, :test do
@@ -35,5 +36,6 @@ group :development, :test do
   gem 'better_errors'
   gem 'rspec-rails', '~> 3.0'
   gem 'guard-rspec'
+  gem 'simplecov', require: false
 end
 
