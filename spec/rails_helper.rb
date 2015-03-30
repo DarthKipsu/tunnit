@@ -1,3 +1,4 @@
+require 'capybara/rspec'
 require 'simplecov'
 SimpleCov.start('rails')
 # This file is copied to spec/ when you run 'rails generate rspec:install'
@@ -51,3 +52,9 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
+def sign_in(credentials)
+  visit signin_path
+  fill_in 'email', with: credentials[:email]
+  fill_in 'password', with: credentials[:password]
+  click_button 'Log in'
+end
