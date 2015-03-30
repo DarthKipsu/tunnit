@@ -2,11 +2,6 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_signed_in
 
-  # GET /projects/1
-  # GET /projects/1.json
-  def show
-  end
-
   # GET /projects/new
   def new
     @project = Project.new
@@ -29,6 +24,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
+        @teams = current_user.teams.all
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
@@ -40,9 +36,11 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
+        @project.team.touch
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
+        @teams = current_user.teams.all
         format.html { render :edit }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end

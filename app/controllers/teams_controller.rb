@@ -30,7 +30,6 @@ class TeamsController < ApplicationController
     respond_to do |format|
       if @team.save
         @team.users << current_user
-        current_user.teams << @team
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.json { render :show, status: :created, location: @team }
       else
