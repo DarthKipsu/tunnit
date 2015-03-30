@@ -52,9 +52,10 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
-def sign_in(credentials)
+def create_user_and_sign_in
+  @user = FactoryGirl.create(:user)
   visit signin_path
-  fill_in 'email', with: credentials[:email]
-  fill_in 'password', with: credentials[:password]
+  fill_in 'email', with: 'test@test.fi'
+  fill_in 'password', with: 'Salainen1'
   click_button 'Log in'
 end
