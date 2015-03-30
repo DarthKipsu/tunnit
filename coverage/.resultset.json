@@ -349,7 +349,7 @@
         null,
         null,
         1,
-        1,
+        0,
         null,
         null,
         null,
@@ -436,13 +436,15 @@
         1,
         1,
         1,
+        null,
+        1,
         null
       ],
       "/home/kipsu/Coding/tunnit/app/models/user.rb": [
         1,
         1,
-        5,
-        2,
+        1,
+        1,
         1,
         null,
         1,
@@ -461,6 +463,6 @@
         null
       ]
     },
-    "timestamp": 1427695560
+    "timestamp": 1427701104
   }
 }
