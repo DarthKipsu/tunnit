@@ -24,9 +24,6 @@ module DateHelper
         temp = ''
         break
       end
-      puts "parsing..."
-      puts temp
-      puts time
     end
     if !temp.empty? then time = time + temp.to_f end
     time

@@ -18,7 +18,7 @@ describe Event do
     end
 
     it "should fail for having begin time after end time" do
-      event = FactoryGirl.build(:event, start: DateTime.parse('2015,3,30 13:14'))
+      event = FactoryGirl.build(:event, end: DateTime.now - (60 * 60))
       expect(event).to_not be_valid
     end
   end
