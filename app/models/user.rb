@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
               message: "must contain at least one capital letter and one number" }
   validates :email, uniqueness: true, presence: true
   validates_format_of :email, :with => /@/
+
+  def recent_teams
+    teams.order(updated_at: :desc)
+  end
 end

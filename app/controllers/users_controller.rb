@@ -25,13 +25,11 @@ class UsersController < ApplicationController
       if @user.save
         team = Team.create(name: 'Personal projects')
         @user.teams << team
-        team.users << @user
         session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render_errors(format, @user.errors, :new)
       end
     end
   end
@@ -44,8 +42,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render_errors(format, @user.errors, :edit)
       end
     end
   end

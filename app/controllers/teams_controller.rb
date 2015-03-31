@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @teams = current_user.teams.all.order(updated_at: :desc)
+    @teams = current_user.recent_teams
   end
 
   # GET /teams/1
@@ -33,8 +33,7 @@ class TeamsController < ApplicationController
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.json { render :show, status: :created, location: @team }
       else
-        format.html { render :new }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
+        render_errors(format, @team.errors, :new)
       end
     end
   end
@@ -47,8 +46,7 @@ class TeamsController < ApplicationController
         format.html { redirect_to @team, notice: 'Team was successfully updated.' }
         format.json { render :show, status: :ok, location: @team }
       else
-        format.html { render :edit }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
+        render_errors(format, @team.errors, :edit)
       end
     end
   end

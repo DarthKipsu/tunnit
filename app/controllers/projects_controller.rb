@@ -1,16 +1,15 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_teams, only: [:new, :edit, :create, :update]
   before_action :ensure_that_signed_in
 
   # GET /projects/new
   def new
     @project = Project.new
-    @teams = current_user.teams.all
   end
 
   # GET /projects/1/edit
   def edit
-    @teams = current_user.teams.all
   end
 
   # POST /projects
@@ -24,9 +23,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
-        @teams = current_user.teams.all
-        format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        render_errors(format, @project.errors, :new)
       end
     end
   end
@@ -40,9 +37,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
-        @teams = current_user.teams.all
-        format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        render_errors(format, @project.errors, :edit)
       end
     end
   end
@@ -58,13 +53,17 @@ class ProjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = current_user.projects.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project
+    @project = current_user.projects.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_params
-      params.require(:project).permit(:name, :team_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def project_params
+    params.require(:project).permit(:name, :team_id)
+  end
+
+  def set_teams
+    @teams = current_user.teams.all
+  end
 end

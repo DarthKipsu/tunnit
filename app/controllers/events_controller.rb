@@ -1,12 +1,13 @@
 class EventsController < ApplicationController
   include DateHelper
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_projects, only: [:new, :show, :edit, :create, :update]
   before_action :ensure_that_signed_in
 
   # GET /events
   # GET /events.json
   def index
-    @events = current_user.events.all
+    @events = current_user.events
   end
 
   # GET /events/1
@@ -17,12 +18,10 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-    @projects = current_user.projects.all
   end
 
   # GET /events/1/edit
   def edit
-    @projects = current_user.projects.all
   end
 
   # POST /events
@@ -42,9 +41,7 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
-        @projects = current_user.projects.all
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        render_errors(format, @event.errors, :new)
       end
     end
   end
@@ -57,9 +54,7 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
-        @projects = current_user.projects.all
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        render_errors(format, @event.errors, :edit)
       end
     end
   end
@@ -83,5 +78,9 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:start, :time, :project)
+    end
+
+    def set_projects
+      @projects = current_user.projects.all
     end
 end
