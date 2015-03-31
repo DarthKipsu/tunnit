@@ -4,5 +4,5 @@
 <div class="col-md-7">
     <br>
 <%= link_to 'Edit project', edit_project_path(@project), class: 'btn btn-default' %>
+<%= link_to 'Delete project', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
 </div>
-

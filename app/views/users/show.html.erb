@@ -13,7 +13,8 @@
 
 <div class="col-md-6">
     <br>
-<%= link_to 'Change password', edit_user_path(@user), class: 'btn btn-default' %>
+    <%= link_to 'Change password', edit_user_path(@user), class: 'btn btn-default' %>
+    <%= link_to 'Delete account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
 </div>
 
 <div class="col-md-12 well">

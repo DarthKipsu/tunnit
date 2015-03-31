@@ -85,19 +85,36 @@ describe 'events page' do
   end
 
   describe 'when editing event' do
-    it 'displays a success message when event successfully updated' do
+    before :each do
       visit edit_event_path(@event)
+    end
+
+    it 'displays a success message when event successfully updated' do
       click_button 'Done'
       expect(page).to have_content 'Event was successfully updated.'
     end
 
     it 'displays error when event updated with errors' do
-      visit edit_event_path(@event)
       select '2016', from: 'event[start(1i)]'
       select '2015', from: 'event[end(1i)]'
       click_button 'Done'
       expect(page).to have_content '1 error'
       expect(page).to have_content 'End must be after'
+    end
+  end
+
+  describe 'when deleting event' do
+    before :each do
+      visit event_path(@event)
+    end
+
+    it 'displays message when event is deleted' do
+      click_link 'Delete event'
+      expect(page).to have_content 'Event was successfully destroyed.'
+    end
+
+    it 'removes the event from db' do
+      expect{ click_link 'Delete event' }.to change{ Event.count }.by -1
     end
   end
 end
