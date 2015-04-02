@@ -73,10 +73,6 @@ describe 'teams page' do
       expect{ click_link 'Destroy team' }.to change{ Project.count }.by -1
     end
   end
-
-  describe 'adding members' do
-    pending
-  end
 end
 
 def fill_form_with(name)

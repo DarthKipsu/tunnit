@@ -494,19 +494,19 @@
       "/home/kipsu/Coding/tunnit/app/validators/no_overlapping_requests.rb": [
         1,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
+        10,
+        10,
+        1,
+        1,
+        1,
         null,
         null,
-        0,
-        0,
+        11,
+        1,
         null,
         null,
-        0,
-        0,
+        11,
+        1,
         null,
         null,
         null
@@ -514,7 +514,7 @@
       "/home/kipsu/Coding/tunnit/app/models/user.rb": [
         1,
         1,
-        411,
+        422,
         146,
         20,
         1,
@@ -540,6 +540,6 @@
         null
       ]
     },
-    "timestamp": 1427983708
+    "timestamp": 1427987075
   }
 }

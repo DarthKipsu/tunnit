@@ -3,7 +3,7 @@ class TeamRequestsController < ApplicationController
 
   # GET teams/1/add_member
   def new
-    @errors = []
+    @team_request = TeamRequest.new
   end
 
   # POST /teams

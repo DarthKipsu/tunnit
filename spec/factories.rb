@@ -22,4 +22,11 @@ FactoryGirl.define do
     sequence(:start) { |t| DateTime.now }
     sequence(:end) { |t| DateTime.now + (6) }
   end
+
+  factory :team_request do
+    target_id 1
+    source_id 2
+    team_id 1
+    sequence(:date) { |t| DateTime.now }
+  end
 end
