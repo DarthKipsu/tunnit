@@ -1,0 +1,21 @@
+<h3>Send request to join <%= @team.name %></h3>
+<%= form_tag add_member_path, class: 'form-inline' do %>
+    <% if @team_request.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@team_request.errors.count, "error") %> prohibited the request from being sent:</h2>
+
+            <ul>
+                <% @team_request.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+
+    <div class="form-group">
+        <%= label_tag :email %><br>
+        <%= text_field_tag :email, '', class: 'form-control' %>
+        <%= submit_tag 'Send request', class: 'btn btn-default' %>
+    </div>
+<% end %>

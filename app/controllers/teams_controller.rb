@@ -30,10 +30,9 @@ class TeamsController < ApplicationController
     respond_to do |format|
       if @team.save
         @team.users << current_user
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
-        format.json { render :show, status: :created, location: @team }
+        render_success format, 'created', :created
       else
-        render_errors(format, @team.errors, :new)
+        render_errors format, @team.errors, :new
       end
     end
   end
@@ -43,10 +42,9 @@ class TeamsController < ApplicationController
   def update
     respond_to do |format|
       if @team.update(team_params)
-        format.html { redirect_to @team, notice: 'Team was successfully updated.' }
-        format.json { render :show, status: :ok, location: @team }
+        render_success format, 'updated', :ok
       else
-        render_errors(format, @team.errors, :edit)
+        render_errors format, @team.errors, :edit
       end
     end
   end
@@ -62,13 +60,18 @@ class TeamsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_team
-      @team = current_user.teams.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_team
+    @team = current_user.teams.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def team_params
-      params.require(:team).permit(:name)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def team_params
+    params.require(:team).permit(:name)
+  end
+
+  def render_success(format, action, status)
+    format.html { redirect_to @team, notice: "Team was successfully #{action}." }
+    format.json { render :show, status: status, location: @team }
+  end
 end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :projects, except: :index
   resources :users, except: :index
   resources :events
+  resources :team_requests, only: [:new, :create]
 
   resource :session, only: [:new, :create, :delete]
 
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   get 'projects', to: 'teams#index'
   get 'users', to: 'teams#index'
+  get 'teams/:id/add_member', to: 'team_requests#new', as: :add_member
+  post 'teams/:id/add_member', to: 'team_requests#create'
   delete 'signout', to: 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
