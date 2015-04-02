@@ -13,7 +13,6 @@ describe "Sign up" do
   it "with valid credentials displays the user a success message" do
     signup_with("Tapsa", "Testaaja", "asd@testi.fi", "Tapsa1", "Tapsa1")
     click_button('Create User')
-    expect(page).to have_content 'User was successfully created.'
     expect(page).to have_content 'Tapsa Testaaja'
   end
 

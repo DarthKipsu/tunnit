@@ -2,6 +2,8 @@ class TeamRequest < ActiveRecord::Base
   belongs_to :target, class_name: 'User', foreign_key: 'target_id'
   belongs_to :source, class_name: 'User', foreign_key: 'source_id'
   belongs_to :team
+
+  scope :pending_for, -> (user_id) { where(target_id: user_id, status: nil) }
   
   validates :target_id, :source_id, :team_id, presence: true
   validates_with NoOverlappingRequests

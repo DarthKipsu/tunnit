@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @requests = current_user.pending_requests
+    flash.now[:notice] = @requests[:message]
   end
 
   # GET /users/new
@@ -26,8 +28,7 @@ class UsersController < ApplicationController
         team = Team.create(name: 'Personal projects')
         @user.teams << team
         session[:user_id] = @user.id
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        render_success format, 'created', :created
       else
         render_errors(format, @user.errors, :new)
       end
@@ -39,8 +40,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        render_success format, 'updated', :ok
       else
         render_errors(format, @user.errors, :edit)
       end
@@ -58,13 +58,18 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:forename, :surname, :email, :password, :password_confirmation)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:forename, :surname, :email, :password, :password_confirmation)
+  end
+
+  def render_success(format, action, status)
+    format.html { redirect_to @user, notice: "Team was successfully #{action}." }
+    format.json { render :show, status: status, location: @user }
+  end
 end

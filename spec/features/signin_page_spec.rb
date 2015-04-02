@@ -8,7 +8,6 @@ describe "Sign in" do
 
   it "should display welcome message when signed in with correct credentials" do
     sign_in_with('test@test.fi', 'Salainen1')
-    expect(page).to have_content 'Welcome!'
     expect(page).to have_content 'Mikko Makkonen'
   end
 

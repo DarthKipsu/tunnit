@@ -17,4 +17,12 @@ class User < ActiveRecord::Base
   def recent_teams
     teams.order(updated_at: :desc)
   end
+
+  def pending_requests
+    req = TeamRequest.pending_for(self.id)
+    message = "You have pending team requests"
+    req.each { |r| message << "; #{Team.find_by(id: r.team_id).name}" }
+    if req.count.zero? then message = nil end
+    { teams: req, message: message }
+  end
 end

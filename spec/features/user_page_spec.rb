@@ -24,7 +24,7 @@ describe 'User page' do
     it 'allows user to change password' do
       fill_in 'user_password_confirmation', with: 'Passu2'
       click_button 'Change password'
-      expect(page).to have_content 'User was successfully updated'
+      expect(page).to have_content 'Your information'
     end
 
     it 'cant change password if its not valid' do

@@ -38,8 +38,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        render_success(format, 'created', :created)
       else
         render_errors(format, @event.errors, :new)
       end
@@ -51,8 +50,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
+        render_success(format, 'updated', :ok)
       else
         render_errors(format, @event.errors, :edit)
       end
@@ -70,17 +68,22 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = current_user.events.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = current_user.events.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:start, :time, :project)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.require(:event).permit(:start, :time, :project)
+  end
 
-    def set_projects
-      @projects = current_user.projects.all
-    end
+  def set_projects
+    @projects = current_user.projects.all
+  end
+
+  def render_success(format, action, status)
+    format.html { redirect_to @event, notice: "Event was successfully #{action}." }
+    format.json { render :show, status: status, location: @event }
+  end
 end
