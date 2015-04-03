@@ -16,7 +16,16 @@ class TeamRequest < ActiveRecord::Base
 
   def accept_request(user, team_id)
     Team.add_user_to team_id, user
-    self.status = 'accepted'
+    change_status 'accepted'
+  end
+
+  def decline_request
+    change_status 'declined'
+  end
+
+  private
+  def change_status(status)
+    self.status = status
     self.save!
   end
 end

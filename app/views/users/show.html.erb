@@ -27,7 +27,7 @@
                 <p>
                 <%= Team.find_by(id: team.team_id).name %>
                 <%= link_to 'Accept', accept_team_path(id: team.id, team_id: team.team_id), method: :post, class: 'btn btn-default btn-xs' %>
-                <button class="btn btn-danger btn-xs">Decline</button>
+                <%= link_to 'Decline', decline_team_path(id: team.id), method: :post, class: 'btn btn-danger btn-xs' %>
                 </p>
             <% end %>
         </div>

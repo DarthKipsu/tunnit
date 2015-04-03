@@ -43,5 +43,15 @@ describe 'teams request page' do
       click_link 'Accept'
       expect(page).to have_content 'Joined team Shared team'
     end
+
+    it 'does not add team to users teams when declined' do
+      expect{ click_link 'Decline' }.to change{ @user.teams.count }.by 0
+    end
+
+    it 'stops displaying the request once if declined' do
+      click_link 'Decline'
+      expect(page).not_to have_content 'You have pending team requests'
+      expect(page).to have_content 'Request declined'
+    end
   end
 end

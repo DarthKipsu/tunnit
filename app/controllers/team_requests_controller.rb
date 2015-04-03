@@ -13,6 +13,13 @@ class TeamRequestsController < ApplicationController
     redirect_to team_path(params[:team_id]), notice: "Joined team #{Team.name_for_id(params[:team_id])}"
   end
 
+  # POST /team_requests/decline
+  def decline
+    request = TeamRequest.find_by id:params[:id]
+    request.decline_request
+    redirect_to :back, notice: "Request declined"
+  end
+
   # POST /teams
   # POST /teams.json
   def create

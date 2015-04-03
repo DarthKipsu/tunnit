@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'teams/:id/add_member', to: 'team_requests#new', as: :add_member
   post 'teams/:id/add_member', to: 'team_requests#create'
   post 'team_requests/accept', to: 'team_requests#accept', as: :accept_team
+  post 'team_requests/decline', to: 'team_requests#decline', as: :decline_team
   delete 'signout', to: 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
