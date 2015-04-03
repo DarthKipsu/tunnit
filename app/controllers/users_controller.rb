@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @requests = current_user.pending_requests
-    if @requests[:display] then flash.now[:notice] = @requests[:message] end
+    if !@requests[:message].nil? then flash.now[:notice] = @requests[:message] end
   end
 
   # GET /users/new
@@ -25,8 +25,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        team = Team.create(name: 'Personal projects')
-        @user.teams << team
+        @user.teams << Team.create(name: 'Personal projects')
         session[:user_id] = @user.id
         render_success format, 'created', :created
       else

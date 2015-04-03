@@ -19,10 +19,22 @@ class User < ActiveRecord::Base
   end
 
   def pending_requests
-    req = TeamRequest.pending_for(self.id)
-    message = "You have pending team requests"
-    req.each { |r| message << "; #{Team.name_for_id(r.team_id)}" }
-    if req.count.zero? then message = nil end
-    { teams: req, message: message, display: req.count > 0 }
+    pending = TeamRequest.pending_for(self.id)
+    changed = TeamRequest.changed_status_for(self.id)
+    message = request_message(pending, changed)
+    changed.each { |r| r.destroy! }
+    { pending: pending, message: message, display: pending.count > 0 }
+  end
+
+  private
+  def request_message(pending, changed)
+    if !changed.empty?
+      message = "Team requests you have sent have changed"
+      changed.each { |r| message << "; #{Team.name_for_id(r.team_id)}: #{User.find_by(id:r.target_id).forename} #{r.status}" }
+    elsif !pending.empty?
+      message = "You have pending team requests"
+      pending.each { |r| message << "; #{Team.name_for_id(r.team_id)}" }
+    end
+    message
   end
 end

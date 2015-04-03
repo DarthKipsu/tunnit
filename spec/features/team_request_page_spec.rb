@@ -54,4 +54,33 @@ describe 'teams request page' do
       expect(page).to have_content 'Request declined'
     end
   end
+
+  describe 'when sent team requests' do
+    it 'displays no message while request is pending' do
+      @request = FactoryGirl.create(:team_request, source_id: 1, target_id: 2)
+      visit user_path(@user)
+      expect(page).not_to have_content 'Team requests you have sent have changed'
+    end
+
+    it 'displays a message after request has been accepted' do
+      @request = FactoryGirl.create(:team_request, team_id: 1, source_id: 1, target_id: 2, status: 'accepted')
+      visit user_path(@user)
+      expect(page).to have_content 'Team requests you have sent have changed'
+      expect(page).to have_content 'Mikko accepted'
+    end
+
+    it 'displays a message after request has been declined' do
+      @request = FactoryGirl.create(:team_request, team_id: 1, source_id: 1, target_id: 2, status: 'declined')
+      visit user_path(@user)
+      expect(page).to have_content 'Team requests you have sent have changed'
+      expect(page).to have_content 'Mikko declined'
+    end
+
+    it 'displays the message only once' do
+      @request = FactoryGirl.create(:team_request, team_id: 1, source_id: 1, target_id: 2, status: 'declined')
+      visit user_path(@user)
+      visit user_path(@user)
+      expect(page).not_to have_content 'Team requests you have sent have changed'
+    end
+  end
 end

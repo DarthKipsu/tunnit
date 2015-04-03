@@ -4,6 +4,7 @@ class TeamRequest < ActiveRecord::Base
   belongs_to :team
 
   scope :pending_for, -> (user_id) { where(target_id: user_id, status: nil) }
+  scope :changed_status_for, -> (user_id) { where(source_id: user_id, status: ['accepted', 'declined']) }
   
   validates :target_id, :source_id, :team_id, presence: true
   validates_with NoOverlappingRequests
