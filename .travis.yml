@@ -13,6 +13,7 @@ deploy:
   provider: heroku
   api_key:
     secure: O6MoDNb3mE/hWaHsOA3h7+SATd7/rDPoINb0CbERXYlcN3+VP9/DMi/sMlnKdN0Jn1pOCAnZAdmIa7TocYcPHyMqmCj5XRzH4/Nb9+UJmXvD9zFwt2XljSNwPpYkWOgkFbNSMfaszBetbNp4TrFuiSTuMpFZImbYvMmogz52/eA=
+  run: "rake db:migrate"
   app: tunnit
   on:
     repo: DarthKipsu/tunnit
