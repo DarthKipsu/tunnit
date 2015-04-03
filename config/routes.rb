@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'users', to: 'teams#index'
   get 'teams/:id/add_member', to: 'team_requests#new', as: :add_member
   post 'teams/:id/add_member', to: 'team_requests#create'
+  post 'teams/:id/leave', to: 'teams#leave', as: :leave_team
   post 'team_requests/accept', to: 'team_requests#accept', as: :accept_team
   post 'team_requests/decline', to: 'team_requests#decline', as: :decline_team
   delete 'signout', to: 'sessions#destroy'

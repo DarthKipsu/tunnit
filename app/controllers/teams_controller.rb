@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:show, :edit, :update, :leave, :destroy]
   before_action :ensure_that_signed_in
 
   # GET /teams
@@ -47,6 +47,13 @@ class TeamsController < ApplicationController
         render_errors format, @team.errors, :edit
       end
     end
+  end
+
+  # POST /teams/1/leave
+  def leave
+    UserTeam.find_by( user_id: current_user.id, team_id: params[:id] ).destroy
+    if @team.users.count.zero? then @team.destroy end
+    redirect_to teams_path, notice: "You're no longer a member of #{@team.name}"
   end
 
   # DELETE /teams/1

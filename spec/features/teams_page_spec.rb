@@ -73,6 +73,30 @@ describe 'teams page' do
       expect{ click_link 'Destroy team' }.to change{ Project.count }.by -1
     end
   end
+
+  describe 'when leaving team' do
+    before :each do
+      visit team_path(@team)
+    end
+
+    it 'removes the team from user teams' do
+      expect{ click_link 'Leave team' }.to change{ @user.teams.count }.by -1
+    end
+
+    it 'deletes the team if user was only member in team' do
+      expect{ click_link 'Leave team' }.to change{ Team.count }.by -1
+    end
+
+    it 'does not delete team if user was not the only member in team' do
+      @team.users << FactoryGirl.create(:user, email:'@')
+      expect{ click_link 'Leave team' }.to change{ Team.count }.by 0
+    end
+
+    it 'displays a message about leaving team' do
+      click_link 'Leave team'
+      expect(page).to have_content "You're no longer a member of Personal projects"
+    end
+  end
 end
 
 def fill_form_with(name)
