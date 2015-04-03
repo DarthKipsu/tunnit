@@ -17,7 +17,7 @@
     <%= link_to 'Delete account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
 </div>
 
-<% if @requests[:teams] then %>
+<% if @requests[:display] %>
     <div class="col-md-12 well">
         <div class="col-md-2">
             <p><strong>Pending team requests:</strong></p>
@@ -26,7 +26,7 @@
             <% @requests[:teams].each do |team| %>
                 <p>
                 <%= Team.find_by(id: team.team_id).name %>
-                <button class="btn btn-default btn-xs">Accept</button>
+                <%= link_to 'Accept', accept_team_path(id: team.id, team_id: team.team_id), method: :post, class: 'btn btn-default btn-xs' %>
                 <button class="btn btn-danger btn-xs">Decline</button>
                 </p>
             <% end %>

@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   def pending_requests
     req = TeamRequest.pending_for(self.id)
     message = "You have pending team requests"
-    req.each { |r| message << "; #{Team.find_by(id: r.team_id).name}" }
+    req.each { |r| message << "; #{Team.name_for_id(r.team_id)}" }
     if req.count.zero? then message = nil end
-    { teams: req, message: message }
+    { teams: req, message: message, display: req.count > 0 }
   end
 end

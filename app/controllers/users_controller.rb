@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @requests = current_user.pending_requests
-    flash.now[:notice] = @requests[:message]
+    if @requests[:display] then flash.now[:notice] = @requests[:message] end
   end
 
   # GET /users/new

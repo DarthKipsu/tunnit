@@ -26,7 +26,7 @@ FactoryGirl.define do
   factory :team_request do
     target_id 1
     source_id 2
-    team_id 1
+    team_id 2
     sequence(:date) { |t| DateTime.now }
   end
 end

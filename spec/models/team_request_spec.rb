@@ -28,19 +28,19 @@ describe TeamRequest do
 
     it "should pass when target user is member of another team" do
       @user.teams << FactoryGirl.create(:team)
-      request = FactoryGirl.build(:team_request, team_id: 2)
+      request = FactoryGirl.build(:team_request)
       expect(request).to be_valid
     end
 
     it "should pass when target user already has pending request for another team" do
       request1 = FactoryGirl.create(:team_request)
-      request2 = FactoryGirl.build(:team_request, team_id: 2)
+      request2 = FactoryGirl.build(:team_request, team_id: 1)
       expect(request2).to be_valid
     end
 
     it "should fail if target user is already a member of the team" do
       @user.teams << FactoryGirl.create(:team)
-      request = FactoryGirl.build(:team_request)
+      request = FactoryGirl.build(:team_request, team_id: 1)
       expect(request).not_to be_valid
     end
 

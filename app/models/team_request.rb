@@ -13,4 +13,10 @@ class TeamRequest < ActiveRecord::Base
     target = target.id unless target.nil?
     TeamRequest.new(date: DateTime.now, target_id: target, source_id: source_id, team_id: team_id)
   end
+
+  def accept_request(user, team_id)
+    Team.add_user_to team_id, user
+    self.status = 'accepted'
+    self.save!
+  end
 end

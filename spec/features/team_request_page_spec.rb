@@ -22,4 +22,26 @@ describe 'teams request page' do
     click_button 'Send request'
     expect(page).to have_content 'User not found'
   end
+
+  describe 'when pending team requests' do
+    before :each do
+      @team2 = FactoryGirl.create(:team, name: 'Shared team')
+      @request = FactoryGirl.create(:team_request)
+      visit user_path(@user)
+    end
+
+    it 'displays a flash message about the pending requests' do
+      expect(page).to have_content 'You have pending team requests'
+      expect(page).to have_content 'Shared team'
+    end
+
+    it 'adds the team to users teams when accepted' do
+      expect{ click_link 'Accept' }.to change{ @user.teams.count }.by 1
+    end
+
+    it 'displays a flash message about joining team when accepted' do
+      click_link 'Accept'
+      expect(page).to have_content 'Joined team Shared team'
+    end
+  end
 end

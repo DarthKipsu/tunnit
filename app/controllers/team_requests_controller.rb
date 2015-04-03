@@ -6,6 +6,13 @@ class TeamRequestsController < ApplicationController
     @team_request = TeamRequest.new
   end
 
+  # POST /team_requests/accept
+  def accept
+    request = TeamRequest.find_by id:params[:id]
+    request.accept_request current_user, params[:team_id]
+    redirect_to team_path(params[:team_id]), notice: "Joined team #{Team.name_for_id(params[:team_id])}"
+  end
+
   # POST /teams
   # POST /teams.json
   def create
