@@ -1,10 +1,21 @@
-<div class="row"><div class="col-md-5">
-<h3><%= @team.name %></h3>
+<div class="row"><div class="col-md-6">
+    <h3><%= @team.name %></h3>
+    <div class="row"><br></div>
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <p><strong>Members:</strong></p>
+        </div>
+        <div class="col-md-8">
+        <% @team.users.each do |member| %>
+            <p><%= member.forename %> <%= member.surname %>
+        <% end %>
+        <%= link_to 'Add a member', add_member_path(@team), class: 'btn btn-default' %>
+        </div>
+    </div>
 </div>
-<div class="col-md-7">
+<div class="col-md-6">
     <br>
     <%= link_to 'New project', new_project_path, class: 'btn btn-default' %>
-    <%= link_to 'Add a member', add_member_path(@team), class: 'btn btn-default' %>
     <%= link_to 'Change name', edit_team_path(@team), class: 'btn btn-default' %>
     <%= link_to 'Destroy team', team_path(@team), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
 </div></div>

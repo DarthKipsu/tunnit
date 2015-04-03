@@ -42,6 +42,7 @@ describe 'teams request page' do
     it 'displays a flash message about joining team when accepted' do
       click_link 'Accept'
       expect(page).to have_content 'Joined team Shared team'
+      expect(page).to have_content 'Mikko Makkonen'
     end
 
     it 'does not add team to users teams when declined' do
