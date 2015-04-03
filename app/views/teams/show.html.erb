@@ -8,7 +8,7 @@
         <div class="col-md-8">
         <% @team.users.each do |member| %>
             <p><%= member.forename %> <%= member.surname %>
-        <% end %>
+        <% end %><br>
         <%= link_to 'Add a member', add_member_path(@team), class: 'btn btn-default' %>
         </div>
     </div>
