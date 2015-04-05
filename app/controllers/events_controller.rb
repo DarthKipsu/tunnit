@@ -48,6 +48,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    puts params
     respond_to do |format|
       if @event.update(event_params)
         render_success(format, 'updated', :ok)
@@ -75,7 +76,7 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:start, :time, :project)
+    params.require(:event).permit(:start, :end, :time, :project)
   end
 
   def set_projects
