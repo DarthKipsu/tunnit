@@ -33,8 +33,8 @@ class EventsController < ApplicationController
       return redirect_to new_event_path, alert: "Incorrect start time"
     end
     endTime = start + parseDuration(params[:time]).minutes
-    title = current_user.projects.find_by_id(params[:project]).name
-    @event = Event.new(start: start, end: endTime, project_id: params[:project], title: title)
+    #title = current_user.projects.find_by_id(params[:project]).name
+    @event = Event.new(start: start, end: endTime, project_id: params[:project]) #, title: title)
 
     respond_to do |format|
       if @event.save

@@ -5,4 +5,8 @@ class Project < ActiveRecord::Base
 
   validates :team_id, presence: true
   validates :name, presence: true
+
+  def self.name_for(id)
+    Project.find_by(id:id).name
+  end
 end

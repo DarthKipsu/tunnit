@@ -18,7 +18,6 @@ FactoryGirl.define do
 
   factory :event do
     project_id 1
-    title "Project name"
     sequence(:start) { |t| DateTime.now }
     sequence(:end) { |t| DateTime.now + (6) }
   end

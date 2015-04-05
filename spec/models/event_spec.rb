@@ -7,11 +7,6 @@ describe Event do
       expect(event).to be_valid
     end
 
-    it "should fail for having no title" do
-      event = FactoryGirl.build(:event, title: nil)
-      expect(event).to_not be_valid
-    end
-
     it "should fail for having no project" do
       event = FactoryGirl.build(:event, project_id: nil)
       expect(event).to_not be_valid
