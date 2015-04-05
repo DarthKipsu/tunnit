@@ -9,9 +9,26 @@ describe 'project page' do
     @event = FactoryGirl.create(:event, project_id: @project.id)
   end
 
-  it 'displays project name on project page' do
-    visit project_path(@project)
-    expect(page).to have_content 'My project'
+  describe 'info page' do
+    before :each do
+      @user2 = FactoryGirl.create(:user, email: '@', forename: 'Make')
+      @team.users << @user2
+      @event2 = FactoryGirl.create(:event, project_id: @project.id, end: DateTime.now + 1, user_id: @user2.id)
+      visit project_path(@project)
+    end
+
+    it 'displays project name on project page' do
+      expect(page).to have_content 'My project'
+    end
+
+    it 'displays total hours used for a project' do
+      expect(page).to have_content 'Total hours used: 168.0 h'
+    end
+
+    it 'displays hours used by each team member' do
+      expect(page).to have_content 'Mikko Makkonen 144.0 h'
+      expect(page).to have_content 'Make Makkonen 24.0 h'
+    end
   end
 
   describe 'when creating a new project' do

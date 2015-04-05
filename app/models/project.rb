@@ -13,4 +13,13 @@ class Project < ActiveRecord::Base
   def total_hours_used
     self.events.inject(0) { |sum, e| sum + e.duration }
   end
+
+  def hours_used_by_user
+    hours = Hash.new(0)
+    self.events.map do |e|
+      user = User.find_by id: e.user_id
+      hours["#{user.forename} #{user.surname}"] += e.duration
+    end
+    return hours
+  end
 end

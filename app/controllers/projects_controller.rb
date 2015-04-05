@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :hours, :update, :destroy]
   before_action :set_teams, only: [:new, :edit, :create, :update]
   before_action :ensure_that_signed_in
 
@@ -10,6 +10,11 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+  end
+
+  # GET /projects/1/show
+  def show
+    @total_hours = @project.total_hours_used
   end
 
   # POST /projects

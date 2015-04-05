@@ -1,4 +1,4 @@
-<div class="col-md-5">
+<div class="col-md-8">
 <h3><%= @project.name %></h3>
 <p>
   <strong>Team:</strong>
@@ -7,9 +7,28 @@
 <p>
   <strong>Total hours used:</strong>
   <%= sprintf "%.1f", @project.total_hours_used %> h
-</p>
+
+  <!--%= link_to project_hours_path(@project), class: 'btn btn-xs btn-default' do %>
+    <span class="glyphicon glyphicon-stats" aria-hidden="true"></span-->
+  <!--% end %-->
+</p><br>
+<% @project.hours_used_by_user.each do |user| %>
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <%= user[0] %>
+        </div>
+        <div class="col-md-8">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="<%= user[1] %>" aria-valuemin="0" aria-valuemax="<%= @project.total_hours_used %>" style="width: <%= user[1] / @total_hours * 100 %>%;">
+                    <%= sprintf "%.1f", user[1] %> h
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
+
 </div>
-<div class="col-md-7">
+<div class="col-md-4">
     <br>
 <%= link_to 'Edit project', edit_project_path(@project), class: 'btn btn-default' %>
 <%= link_to 'Delete project', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
