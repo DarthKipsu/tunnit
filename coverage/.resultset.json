@@ -11,8 +11,8 @@
         1,
         null,
         null,
-        754,
-        685,
+        758,
+        689,
         null,
         null,
         1,
@@ -117,11 +117,11 @@
         2,
         null,
         5,
-        null,
         5,
         null,
         5,
         5,
+        4,
         4,
         null,
         1,
@@ -477,6 +477,7 @@
       "/home/kipsu/Coding/tunnit/app/models/event.rb": [
         1,
         1,
+        1,
         null,
         1,
         1,
@@ -582,9 +583,9 @@
       "/home/kipsu/Coding/tunnit/app/models/user.rb": [
         1,
         1,
-        545,
-        168,
-        20,
+        492,
+        115,
+        24,
         1,
         1,
         null,
@@ -628,6 +629,6 @@
         null
       ]
     },
-    "timestamp": 1428231407
+    "timestamp": 1428233045
   }
 }

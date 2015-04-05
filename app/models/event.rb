@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :project
+  belongs_to :user
 
   validates :project_id, presence: true
   validates_datetime :end, after: :start

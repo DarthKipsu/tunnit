@@ -18,6 +18,7 @@ FactoryGirl.define do
 
   factory :event do
     project_id 1
+    user_id 1
     sequence(:start) { |t| DateTime.now }
     sequence(:end) { |t| DateTime.now + (6) }
   end

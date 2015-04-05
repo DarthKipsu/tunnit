@@ -33,11 +33,11 @@ class EventsController < ApplicationController
       return redirect_to new_event_path, alert: "Incorrect start time"
     end
     endTime = start + parseDuration(params[:time]).minutes
-    #title = current_user.projects.find_by_id(params[:project]).name
-    @event = Event.new(start: start, end: endTime, project_id: params[:project]) #, title: title)
+    @event = Event.new(start: start, end: endTime, project_id: params[:project])
 
     respond_to do |format|
       if @event.save
+        current_user.events << @event
         render_success(format, 'created', :created)
       else
         render_errors(format, @event.errors, :new)
@@ -75,7 +75,7 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:start, :end, :time, :project, :project_id)
+    params.require(:event).permit(:start, :end, :time, :project, :project_id, :user_id)
   end
 
   def set_projects

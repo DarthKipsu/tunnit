@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :user_teams
   has_many :teams, -> { uniq }, through: :user_teams
   has_many :projects, -> { uniq }, through: :teams
-  has_many :events, -> { uniq }, through: :projects
+  has_many :events, -> { uniq }
   has_many :team_requests, class_name: 'TeamRequest', foreign_key: 'target_id'
   has_many :sent_requests, class_name: 'TeamRequest', foreign_key: 'source_id'
 

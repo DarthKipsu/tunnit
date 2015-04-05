@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'events page' do
   before(:each) do
     create_user_and_sign_in
-    @project2 = FactoryGirl.create(:project, team_id: 99, name: 'Someone elses')
-    @event2 = FactoryGirl.create(:event, project_id: @project2.id)
+    @project2 = FactoryGirl.create(:project, name: 'Someone elses')
+    @event2 = FactoryGirl.create(:event, user_id: 99)
     @team = FactoryGirl.create(:team)
     @team.users << @user
     @project = FactoryGirl.create(:project, team_id: @team.id)
