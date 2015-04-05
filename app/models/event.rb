@@ -8,4 +8,8 @@ class Event < ActiveRecord::Base
   def title
     Project.name_for(self.project_id)
   end
+
+  def duration
+    (self.end - self.start) / 3600
+  end
 end

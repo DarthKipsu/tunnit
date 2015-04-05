@@ -4,6 +4,10 @@
   <strong>Team:</strong>
   <%= link_to @project.team.name, @project.team %>
 </p>
+<p>
+  <strong>Total hours used:</strong>
+  <%= sprintf "%.1f", @project.total_hours_used %> h
+</p>
 </div>
 <div class="col-md-7">
     <br>

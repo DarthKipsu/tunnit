@@ -485,6 +485,10 @@
         1,
         4,
         null,
+        null,
+        1,
+        12,
+        null,
         null
       ],
       "/home/kipsu/Coding/tunnit/app/models/project.rb": [
@@ -498,6 +502,10 @@
         null,
         1,
         4,
+        null,
+        null,
+        1,
+        12,
         null,
         null
       ],
@@ -629,6 +637,6 @@
         null
       ]
     },
-    "timestamp": 1428233912
+    "timestamp": 1428235546
   }
 }

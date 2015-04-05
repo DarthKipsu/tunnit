@@ -9,4 +9,8 @@ class Project < ActiveRecord::Base
   def self.name_for(id)
     Project.find_by(id:id).name
   end
+
+  def total_hours_used
+    self.events.inject(0) { |sum, e| sum + e.duration }
+  end
 end

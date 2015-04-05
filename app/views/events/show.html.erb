@@ -7,7 +7,7 @@
 <p>
     <strong>Time:</strong>
     <%= @event.start.strftime("%H:%M") %> - <%= @event.end.strftime("%H:%M") %>
-    (<%= sprintf "%.1f", (@event.end - @event.start) / 3600 %> h)
+    (<%= sprintf "%.1f", @event.duration %> h)
 </p>
 <p>
     <strong>Belongs to:</strong>
