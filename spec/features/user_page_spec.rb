@@ -15,6 +15,26 @@ describe 'User page' do
     expect(page).to have_content 'Projects:'
   end
 
+  describe 'acces to other users information' do
+    before :each do
+      @user2 = FactoryGirl.create(:user, email:'@', forename: 'KK', surname: 'Kojootti')
+      @team = FactoryGirl.create(:team)
+      @project = FactoryGirl.create(:project, team_id: @team.id)
+      @team.users << @user2
+    end
+
+    it 'does not display user info if member not in same team' do
+      visit user_path(@user2)
+      expect(page).to have_content 'Forbidden access'
+    end
+
+    it 'displays team members info' do
+      @team.users << @user
+      visit user_path(@user2)
+      expect(page).to have_content 'KK Kojootti'
+    end
+  end
+
   describe 'when editing user' do
     before :each do
       visit edit_user_path(@user)
@@ -24,7 +44,7 @@ describe 'User page' do
     it 'allows user to change password' do
       fill_in 'user_password_confirmation', with: 'Passu2'
       click_button 'Change password'
-      expect(page).to have_content 'Your information'
+      expect(page).to have_content 'Account was successfully updated'
     end
 
     it 'cant change password if its not valid' do

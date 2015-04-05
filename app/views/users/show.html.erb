@@ -1,5 +1,5 @@
 <div class="col-md-6">
-<h3>Your information</h3>
+<h3>User information</h3>
 <p>
 <strong>Name:</strong>
 <%= @user.forename %> <%= @user.surname %>
@@ -13,8 +13,8 @@
 
 <div class="col-md-6">
     <br>
-    <%= link_to 'Change password', edit_user_path(@user), class: 'btn btn-default' %>
-    <%= link_to 'Delete account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <%= link_to 'Change password', edit_user_path(@user), class: 'btn btn-default' unless @user != current_user %>
+    <%= link_to 'Delete account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' unless @user != current_user %>
 </div>
 
 <% if @requests[:display] %>
@@ -39,7 +39,7 @@
         <p><strong>Teams:</strong></p>
     </div>
     <div class="col-md-10">
-        <% @user.teams.order(updated_at: :desc).each do |team| %>
+        <% @teams.each do |team| %>
             <p><%= link_to team.name, team %></p>
         <% end %>
     </div>
@@ -50,7 +50,7 @@
         <p><strong>Projects:</strong></p>
     </div>
     <div class="col-md-10">
-        <% @user.projects.order(updated_at: :desc).each do |project| %>
+        <% @projects.each do |project| %>
             <p><%= link_to project.name, project %></p>
         <% end %>
     </div>

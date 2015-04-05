@@ -26,6 +26,18 @@ class User < ActiveRecord::Base
     { pending: pending, message: message, display: pending.count > 0 }
   end
 
+  def team_member?(user)
+    user.id == self.id || !(team_ids(user) & team_ids(self)).empty?
+  end
+
+  def shared_teams_with(user)
+    user.teams & self.teams
+  end
+
+  def shared_projects_with(user)
+    user.projects & self.projects
+  end
+
   private
   def request_message(pending, changed)
     if !changed.empty?
@@ -36,5 +48,9 @@ class User < ActiveRecord::Base
       pending.each { |r| message << "; #{Team.name_for_id(r.team_id)}" }
     end
     message
+  end
+
+  def team_ids(user)
+    user.teams.map{ |t| t.id }
   end
 end
