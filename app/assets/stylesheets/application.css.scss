@@ -3,6 +3,7 @@
 @import 'select2';
 @import 'select2-bootstrap';
 @import 'fullcalendar';
+@import 'font-awesome';
 
 main {
     padding: 50px;
@@ -83,4 +84,20 @@ main {
 
 .well p strong a, .well p strong a:visited {
     color: black;
+}
+
+.form-xs {
+    height: 22px;
+    font-size: 12px;
+    padding: 0px 12px;
+    margin: 0;
+}
+
+.fa-history {
+    transform: scaleX(-1);
+    filter: FlipH;
+}
+
+.no-wrap {
+    white-space: nowrap;
 }

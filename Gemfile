@@ -18,6 +18,7 @@ gem 'bootstrap-sass'
 gem "select2-rails"
 gem 'validates_timeliness', '~> 3.0'
 gem "codeclimate-test-reporter", group: :test, require: nil
+gem "font-awesome-rails"
 
 group :production do
   gem 'pg'

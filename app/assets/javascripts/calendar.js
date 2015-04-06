@@ -51,8 +51,7 @@ var loadCalendar = function() {
         }
     });
 
-    $('#event-start').tooltip();
-    $('#event-duration').tooltip();
+    $('#event-start, #event-duration').tooltip();
 }
 $(document).ready(loadCalendar);
 $(document).on('page:load', loadCalendar);

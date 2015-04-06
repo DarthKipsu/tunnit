@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/show
   def show
     @total_hours = @project.total_hours_used
+    @allocation = Allocation.new
   end
 
   # POST /projects
@@ -57,6 +58,24 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # POST projects/allocate
+  def allocate
+    @allocation = Allocation.find_by project_id:params[:project_id], user_id:params[:user_id]
+
+    if @allocation.nil?
+      @allocation = Allocation.new(allocation_params)
+    else
+      @allocation.update(allocation_params)
+    end
+
+    if @allocation.save
+      redirect_to :back, notice: "#{params[:alloc_hours]} hours allocated for #{params[:name]}"
+    else
+      flash[:error] = "Error in hours format, nothing allocated!"
+      redirect_to :back
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_project
@@ -66,6 +85,10 @@ class ProjectsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
     params.require(:project).permit(:name, :team_id)
+  end
+
+  def allocation_params
+    params.permit(:user_id, :project_id, :alloc_hours)
   end
 
   def set_teams

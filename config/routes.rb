@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post 'teams/:id/leave', to: 'teams#leave', as: :leave_team
   post 'team_requests/accept', to: 'team_requests#accept', as: :accept_team
   post 'team_requests/decline', to: 'team_requests#decline', as: :decline_team
+  post 'projects/allocate', to: 'projects#allocate', as: :allocations
   delete 'signout', to: 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.

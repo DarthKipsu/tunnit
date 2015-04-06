@@ -29,6 +29,35 @@ describe 'project page' do
       expect(page).to have_content 'Mikko Makkonen 144.0 h'
       expect(page).to have_content 'Make Makkonen 24.0 h'
     end
+
+    it 'allocates hours with a new allocation when none have been allocated' do
+      fill_in 'allocate-1', with: 40
+      expect{ click_button 'button-1' }.to change{ Allocation.count }.by 1
+    end
+
+    it 'does not allocate hours when format wrong' do
+      fill_in 'allocate-1', with: 'carrots'
+      expect{ click_button 'button-1' }.to change{ Allocation.count }.by 0
+    end
+
+    it 'updates old allocations when previous allocation excist' do
+      fill_in 'allocate-1', with: 40
+      click_button 'button-1'
+      fill_in 'allocate-1', with: 80
+      expect{ click_button 'button-1' }.to change{ Allocation.count }.by 0
+    end
+
+    it 'displays a message when allocating hours' do
+      fill_in 'allocate-1', with: 40
+      click_button 'button-1'
+      expect(page).to have_content '40 hours allocated for Mikko Makkonen'
+    end
+
+    it 'displays a warning when allocating format wrong' do
+      fill_in 'allocate-1', with: 'error'
+      click_button 'button-1'
+      expect(page).to have_content 'Error in hours format, nothing allocated!'
+    end
   end
 
   describe 'when creating a new project' do

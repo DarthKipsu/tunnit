@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :events, -> { uniq }
   has_many :team_requests, class_name: 'TeamRequest', foreign_key: 'target_id'
   has_many :sent_requests, class_name: 'TeamRequest', foreign_key: 'source_id'
+  has_many :allocations
 
   has_secure_password
 
