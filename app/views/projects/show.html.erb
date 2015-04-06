@@ -22,9 +22,15 @@
             </div>
             <div class="col-md-5">
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="<%= user[1] %>" aria-valuemin="0" aria-valuemax="<%= @project.total_hours_used %>" style="width: <%= user[1][:hours] / @total_hours * 100 %>%;">
-                        <%= sprintf "%.1f", user[1][:hours] %> h
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= user[1] %>" aria-valuemin="0" aria-valuemax="<%= @project.total_hours_used %>" style="width: <%= user[1][:percent] %>%;">
+                        <%= sprintf "%.1f", user[1][:hours] %>h
+                        <% if !user[1][:alloc_hours].nil? %>
+                            / <%= user[1][:alloc_hours] %>h
+                        <% end %>
                     </div>
+                    <% if !user[1][:alloc_hours].nil? %>
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<%= user[1] %>" aria-valuemin="0" aria-valuemax="<%= @project.total_hours_used %>" style="width: <%= user[1][:over] %>%;"></div>
+                    <% end %>
                 </div>
             </div>
             <div class="col-md-2">

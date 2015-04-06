@@ -26,8 +26,8 @@ describe 'project page' do
     end
 
     it 'displays hours used by each team member' do
-      expect(page).to have_content 'Mikko Makkonen 144.0 h'
-      expect(page).to have_content 'Make Makkonen 24.0 h'
+      expect(page).to have_content 'Mikko Makkonen 144.0h'
+      expect(page).to have_content 'Make Makkonen 24.0h'
     end
 
     it 'allocates hours with a new allocation when none have been allocated' do
