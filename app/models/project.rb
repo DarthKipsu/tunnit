@@ -16,16 +16,23 @@ class Project < ActiveRecord::Base
   end
 
   def hours_used_by_user
-    hours = {}
+    hours = create_hours_hash
     self.events.map do |e|
       user = User.find_by id: e.user_id
-      hours[user.id] = { name: "#{user.forename} #{user.surname}", hours: 0, id: user.id } unless hours[user.id]
       hours[user.id][:hours] += e.duration
     end
     add_allocations hours
   end
 
   private
+  def create_hours_hash
+    hours = {}
+    self.users.each do |user|
+      hours[user.id] = { name: "#{user.forename} #{user.surname}", hours: 0, id: user.id }
+    end
+    hours
+  end
+
   def add_allocations(hours)
     total = self.total_hours_used
     hours.map do |user|

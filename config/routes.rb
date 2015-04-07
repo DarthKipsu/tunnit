@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   post 'team_requests/decline', to: 'team_requests#decline', as: :decline_team
   post 'projects/allocate', to: 'projects#allocate', as: :allocations
   delete 'signout', to: 'sessions#destroy'
+  delete 'projects/:id/deallocate', to: 'projects#deallocate', as: :deallocations
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

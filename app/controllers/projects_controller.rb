@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
+  before_action :ensure_that_signed_in
   before_action :set_project, only: [:show, :edit, :hours, :update, :destroy]
   before_action :set_teams, only: [:new, :edit, :create, :update]
-  before_action :ensure_that_signed_in
+  before_action :set_allocation, only: [:allocate, :deallocate]
 
   # GET /projects/new
   def new
@@ -60,8 +61,6 @@ class ProjectsController < ApplicationController
 
   # POST projects/allocate
   def allocate
-    @allocation = Allocation.find_by project_id:params[:project_id], user_id:params[:user_id]
-
     if @allocation.nil?
       @allocation = Allocation.new(allocation_params)
     else
@@ -76,13 +75,17 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # DELETE projects/allocate
+  def deallocate
+    @allocation.destroy
+    redirect_to :back, notice: "Allocations for #{params[:name]} removed"
+  end
+
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_project
     @project = current_user.projects.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
     params.require(:project).permit(:name, :team_id)
   end
@@ -93,5 +96,9 @@ class ProjectsController < ApplicationController
 
   def set_teams
     @teams = current_user.teams.all
+  end
+
+  def set_allocation
+    @allocation = Allocation.find_by project_id:params[:project_id], user_id:params[:user_id]
   end
 end

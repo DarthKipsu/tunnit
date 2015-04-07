@@ -41,12 +41,26 @@
                     <div class="form-group">
                         <%= label_tag :hours, 'Allocate hours', class: 'sr-only' %>
                         <div class="input-group no-wrap">
-                            <%= text_field_tag :alloc_hours, '', class: 'form-control form-xs', id: "allocate-#{user[1][:id]}", placeholder: 'Allocate hours' %>
+                            <%= text_field_tag :alloc_hours, user[1][:alloc_hours], class: 'form-control form-xs', id: "allocate-#{user[1][:id]}", placeholder: 'Allocate hours', style: 'width: 80%' %>
                             <%= button_tag(type: 'submit', id: "button-#{user[1][:id]}", class: "input-group-addon form-xs btn btn-default") do %>
                                 <%= fa_icon 'history' %>
                              <% end %>
                         </div>
                     </div>
+                <% end %>
+            </div>
+            <div class="col-md-2">
+                <% if !user[1][:alloc_hours].nil? %>
+                <%= form_tag deallocations_path(@project), method: 'DELETE' do %>
+                    <%= hidden_field_tag :user_id, user[1][:id] %>
+                    <%= hidden_field_tag :project_id, @project.id %>
+                    <%= hidden_field_tag :name, user[1][:name] %>
+                    <div class="form-group">
+                        <%= button_tag(type: 'submit', class: 'btn btn-danger form-xs', id: "deallocate-#{user[1][:id]}") do %>
+                            <%= fa_icon 'trash-o' %>
+                        <% end %>
+                    </div>
+                <% end %>
                 <% end %>
             </div>
         </div>
