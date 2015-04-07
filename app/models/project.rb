@@ -40,7 +40,7 @@ class Project < ActiveRecord::Base
       if alloc.nil?
         user[1][:percent] = calc_percentages user[1][:hours], total
       else
-        add_percentages_by_allocations user, alloc
+        add_percentages_by_allocations user, alloc.alloc_hours
       end
     end
     hours
@@ -51,11 +51,11 @@ class Project < ActiveRecord::Base
   end
 
   def add_percentages_by_allocations(user, alloc)
-    user[1][:alloc_hours] = alloc.alloc_hours.to_s
-    user[1][:percent] = calc_percentages user[1][:hours], alloc.alloc_hours.to_f
+    user[1][:alloc_hours] = alloc.to_s
+    user[1][:percent] = calc_percentages user[1][:hours], alloc.to_f
     if user[1][:percent] > 100
-      user[1][:over] = calc_percentages user[1][:hours] - alloc.alloc_hours.to_f, user[1][:hours]
-      user[1][:percent] = alloc.alloc_hours.to_f / user[1][:hours] * 100
+      user[1][:over] = calc_percentages user[1][:hours] - alloc.to_f, user[1][:hours]
+      user[1][:percent] = calc_percentages alloc.to_f, user[1][:hours]
     end
   end
 end
