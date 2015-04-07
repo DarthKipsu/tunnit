@@ -38,16 +38,24 @@ class Project < ActiveRecord::Base
     hours.map do |user|
       alloc = Allocation.find_by project_id: self.id, user_id: user[1][:id]
       if alloc.nil?
-        user[1][:percent] = (user[1][:hours] / total) * 100
+        user[1][:percent] = calc_percentages user[1][:hours], total
       else
-        user[1][:alloc_hours] = alloc.alloc_hours.to_s
-        user[1][:percent] = (user[1][:hours] / alloc.alloc_hours.to_f) * 100
-        if user[1][:percent] > 100
-          user[1][:over] = (user[1][:hours] - alloc.alloc_hours.to_f) / user[1][:hours] * 100
-          user[1][:percent] = alloc.alloc_hours.to_f / user[1][:hours] * 100
-        end
+        add_percentages_by_allocations user, alloc
       end
     end
     hours
+  end
+
+  def calc_percentages(hours, total)
+    return hours / total * 100
+  end
+
+  def add_percentages_by_allocations(user, alloc)
+    user[1][:alloc_hours] = alloc.alloc_hours.to_s
+    user[1][:percent] = calc_percentages user[1][:hours], alloc.alloc_hours.to_f
+    if user[1][:percent] > 100
+      user[1][:over] = calc_percentages user[1][:hours] - alloc.alloc_hours.to_f, user[1][:hours]
+      user[1][:percent] = alloc.alloc_hours.to_f / user[1][:hours] * 100
+    end
   end
 end
