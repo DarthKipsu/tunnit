@@ -18,7 +18,7 @@
     <% @project.hours_used_by_user.each do |user| %>
         <div class="col-md-12">
             <div class="col-md-2 no-wrap">
-                <%= user[1][:name] %>
+                <%= link_to user[1][:name], user_path(user[1][:id]) %>
             </div>
             <div class="col-md-5">
                 <div class="progress">
