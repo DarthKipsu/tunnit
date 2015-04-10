@@ -47,6 +47,9 @@ class Project < ActiveRecord::Base
   end
 
   def calc_percentages(hours, total)
+    if total.zero?
+      return 0
+    end
     return hours / total * 100
   end
 

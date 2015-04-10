@@ -14,7 +14,7 @@
       <img src="./assets/0.9.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-04-10T08:12:27+03:00">2015-04-10T08:12:27+03:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-04-10T08:26:25+03:00">2015-04-10T08:26:25+03:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         21.63
+         21.69
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>22</b> files in total.
-    <b>385</b> relevant lines. 
-    <span class="green"><b>385</b> lines covered</span> and
+    <b>387</b> relevant lines. 
+    <span class="green"><b>387</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -57,7 +57,7 @@
         <td>9</td>
         <td>9</td>
         <td>0</td>
-        <td>313.2</td>
+        <td>314.1</td>
       </tr>
       
       <tr>
@@ -213,11 +213,11 @@
       <tr>
         <td class="strong"><a href="#bce44f04bfd7e62d8f8fd9776ca9563edc23faca" class="src_link" title="app/models/project.rb">app/models/project.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>61</td>
-        <td>39</td>
-        <td>39</td>
+        <td>64</td>
+        <td>41</td>
+        <td>41</td>
         <td>0</td>
-        <td>25.5</td>
+        <td>25.7</td>
       </tr>
       
       <tr>
@@ -283,7 +283,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         17.94
+         17.98
        </span>
     </span> hits/line)
   </h2>
@@ -315,7 +315,7 @@
         <td>9</td>
         <td>9</td>
         <td>0</td>
-        <td>313.2</td>
+        <td>314.1</td>
       </tr>
       
       <tr>
@@ -410,15 +410,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         31.44
+         31.41
        </span>
     </span> hits/line)
   </h2>
   <a name="Models"></a>
   <div>
     <b>7</b> files in total.
-    <b>122</b> relevant lines. 
-    <span class="green"><b>122</b> lines covered</span> and
+    <b>124</b> relevant lines. 
+    <span class="green"><b>124</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -458,11 +458,11 @@
       <tr>
         <td class="strong"><a href="#bce44f04bfd7e62d8f8fd9776ca9563edc23faca" class="src_link" title="app/models/project.rb">app/models/project.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>61</td>
-        <td>39</td>
-        <td>39</td>
+        <td>64</td>
+        <td>41</td>
+        <td>41</td>
         <td>0</td>
-        <td>25.5</td>
+        <td>25.7</td>
       </tr>
       
       <tr>
@@ -796,14 +796,14 @@
           <code class="ruby">      session[:user_id].nil? or</code>
         </li>
       
-        <li class="covered" data-hits="1335" data-linenumber="10">
-          <span class="hits">1335</span>
+        <li class="covered" data-hits="1339" data-linenumber="10">
+          <span class="hits">1339</span>
           
           <code class="ruby">      User.all.find_by(id: session[:user_id]).nil?</code>
         </li>
       
-        <li class="covered" data-hits="1255" data-linenumber="11">
-          <span class="hits">1255</span>
+        <li class="covered" data-hits="1259" data-linenumber="11">
+          <span class="hits">1259</span>
           
           <code class="ruby">    User.find(session[:user_id])</code>
         </li>
@@ -4075,8 +4075,8 @@
     <h3>app/models/project.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>39</b> relevant lines. 
-      <span class="green"><b>39</b> lines covered</span> and
+      <b>41</b> relevant lines. 
+      <span class="green"><b>41</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -4168,8 +4168,8 @@
           <code class="ruby">  def total_hours_used</code>
         </li>
       
-        <li class="covered" data-hits="356" data-linenumber="15">
-          <span class="hits">356</span>
+        <li class="covered" data-hits="358" data-linenumber="15">
+          <span class="hits">358</span>
           
           <code class="ruby">    self.events.inject(0) { |sum, e| sum + e.duration }</code>
         </li>
@@ -4354,8 +4354,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="46">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="26" data-linenumber="46">
+          <span class="hits">26</span>
           
           <code class="ruby">    hours</code>
         </li>
@@ -4381,70 +4381,88 @@
         <li class="covered" data-hits="58" data-linenumber="50">
           <span class="hits">58</span>
           
-          <code class="ruby">    return hours / total * 100</code>
+          <code class="ruby">    if total.zero?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="51">
+        <li class="covered" data-hits="2" data-linenumber="51">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">      return 0</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="52">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="53">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def add_percentages_by_allocations(user, alloc)</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="54">
-          <span class="hits">6</span>
-          
-          <code class="ruby">    user[1][:alloc_hours] = alloc.to_s</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="55">
-          <span class="hits">6</span>
-          
-          <code class="ruby">    user[1][:percent] = calc_percentages user[1][:hours], alloc.to_f</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="56">
-          <span class="hits">6</span>
-          
-          <code class="ruby">    if user[1][:percent] &gt; 100</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="57">
-          <span class="hits">6</span>
-          
-          <code class="ruby">      user[1][:over] = calc_percentages user[1][:hours] - alloc.to_f, user[1][:hours]</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="58">
-          <span class="hits">6</span>
-          
-          <code class="ruby">      user[1][:percent] = calc_percentages alloc.to_f, user[1][:hours]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="59">
-          
-          
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="covered" data-hits="56" data-linenumber="53">
+          <span class="hits">56</span>
+          
+          <code class="ruby">    return hours / total * 100</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="54">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="61">
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="56">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def add_percentages_by_allocations(user, alloc)</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="57">
+          <span class="hits">6</span>
+          
+          <code class="ruby">    user[1][:alloc_hours] = alloc.to_s</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="58">
+          <span class="hits">6</span>
+          
+          <code class="ruby">    user[1][:percent] = calc_percentages user[1][:hours], alloc.to_f</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="59">
+          <span class="hits">6</span>
+          
+          <code class="ruby">    if user[1][:percent] &gt; 100</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="60">
+          <span class="hits">6</span>
+          
+          <code class="ruby">      user[1][:over] = calc_percentages user[1][:hours] - alloc.to_f, user[1][:hours]</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="61">
+          <span class="hits">6</span>
+          
+          <code class="ruby">      user[1][:percent] = calc_percentages alloc.to_f, user[1][:hours]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="62">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="63">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="64">
           
           
           <code class="ruby">end</code>
