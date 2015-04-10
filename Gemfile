@@ -28,6 +28,7 @@ end
 group :development do
   gem 'rails_layout'
   gem 'guard'
+  gem 'rails-erd'
 end
 
 group :test do
