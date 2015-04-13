@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    if params[:team] then @project.team_id = params[:team] end
   end
 
   # GET /projects/1/edit
