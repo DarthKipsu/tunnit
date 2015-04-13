@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /@/
 
   def recent_teams
-    teams.order(updated_at: :desc)
+    teams.joins(:projects).order(updated_at: :desc)
   end
 
   def pending_requests
