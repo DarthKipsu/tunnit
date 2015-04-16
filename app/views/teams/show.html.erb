@@ -1,27 +1,28 @@
-<div class="row"><div class="col-md-5">
+<div class="col-md-12 text-right">
+    <br>
+    <%= link_to 'New project', new_project_path(team: @team.id), class: 'btn btn-default' %>
+    <%= link_to 'Change name', edit_team_path(@team), class: 'btn btn-default' %>
+    <%= link_to 'Leave team', leave_team_path(@team), method: :post, data: { confirm: 'Are you sure?' }, class: 'btn btn-warning' %>
+    <%= link_to 'Destroy team', team_path(@team), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+</div>
+<div class="col-md-12">
     <h3><%= @team.name %></h3>
-    <div class="row"><br></div>
+</div>
+<div>&nbsp;</div>
+
     <div class="col-md-12">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <p><strong>Members:</strong></p>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
         <% @team.users.each do |member| %>
             <p><%= member.forename %> <%= member.surname %>
         <% end %><br>
         <%= link_to 'Add a member', add_member_path(@team), class: 'btn btn-default' %>
         </div>
     </div>
-</div>
-<div class="col-md-7">
-    <br>
-    <%= link_to 'New project', new_project_path(team: @team.id), class: 'btn btn-default' %>
-    <%= link_to 'Change name', edit_team_path(@team), class: 'btn btn-default' %>
-    <%= link_to 'Leave team', leave_team_path(@team), method: :post, data: { confirm: 'Are you sure?' }, class: 'btn btn-warning' %>
-    <%= link_to 'Destroy team', team_path(@team), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-</div></div>
 
-<div class="row"><br></div>
+<div>&nbsp;</div>
 
 <div class="row well">
     <div class="col-md-2">
