@@ -21,6 +21,7 @@ gem "codeclimate-test-reporter", group: :test, require: nil
 gem "font-awesome-rails"
 gem 'rack-mini-profiler'
 gem 'pdfkit'
+gem 'puma'
 
 group :production do
   gem 'pg'
