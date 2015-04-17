@@ -52,6 +52,12 @@ var loadCalendar = function() {
     });
 
     $('#event-start, #event-duration').tooltip();
+
+    $('.datepicker').datetimepicker({
+        format: 'D-MM-YYYY h:mm a',
+        sideBySide: true,
+        calendarWeeks: true
+    });
 }
 $(document).ready(loadCalendar);
 $(document).on('page:load', loadCalendar);

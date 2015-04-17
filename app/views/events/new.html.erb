@@ -20,9 +20,7 @@
     </div>
     <div class="form-group">
         <%= label_tag :start, 'Starting from' %><br>
-        <%= text_field_tag :start, '', class: 'form-control', id: 'event-start',
-            data: { placement: 'bottom', toggle: 'tooltip',
-                    title: 'Examples: 9:00 am, 3:30 pm, 16:45' } %>
+        <%= text_field_tag :start, '', class: 'form-control datepicker', id: 'event-start' %>
     </div>
     <div class="form-group">
         <%= label_tag :time, 'Time spent' %><br>

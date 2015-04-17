@@ -22,6 +22,7 @@ gem "font-awesome-rails"
 gem 'rack-mini-profiler'
 gem 'pdfkit'
 gem 'puma'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 
 group :production do
   gem 'pg'
