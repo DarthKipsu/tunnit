@@ -39,6 +39,17 @@ class User < ActiveRecord::Base
     user.projects & self.projects
   end
 
+  def hours_after(date)
+    hours = { total: 0, projects: Hash.new(0) }
+    events.map do |e|
+      if e.start > date.beginning_of_day
+        hours[:total] += e.duration
+        hours[:projects][e.title.to_sym] += e.duration
+      end
+    end
+    return hours
+  end
+
   private
   def request_message(pending, changed)
     if !changed.empty?

@@ -1,0 +1,16 @@
+<h1>Monthly hours report</h1>
+<p><strong>Name: </strong><%= @user.forename %> <%= @user.surname %> (<%= @user.email %>)</p>
+<p><strong>Time: </strong><%= (Time.now - 1.month).strftime("%d.%m.%Y") %> - <%= Time.now.strftime("%d.%m.%Y") %></p>
+<p><strong>Total hours: </strong><%= sprintf "%.1f", @hours[:total] %> h</p>
+<table>
+    <tr>
+        <td><h3>Projects:</h3></td>
+    </tr>
+    <% @hours[:projects].each do |project| %>
+     <tr>
+        <td></td>
+        <td><%= project[0] %> &nbsp; &nbsp; </td>
+        <td><%= sprintf "%.1f", project[1] %> hours</td>
+     </tr>
+    <% end %>
+</table>

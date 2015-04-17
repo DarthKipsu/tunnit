@@ -20,7 +20,7 @@ FactoryGirl.define do
     project_id 1
     user_id 1
     sequence(:start) { |t| DateTime.now }
-    sequence(:end) { |t| DateTime.now + (6) }
+    sequence(:end) { |t| DateTime.now + 2.hours }
   end
 
   factory :team_request do

@@ -9,6 +9,8 @@
 <strong>Email:</strong>
 <%= @user.email %>
 </p>
+
+<p><%= link_to 'Generate monthly report', generate_report_path(@user, format: 'pdf'), class: 'btn btn-default' %></p>
 </div>
 
 <div class="col-md-6">

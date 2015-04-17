@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :report]
   before_action :ensure_that_signed_in, except: [:new, :create]
   before_action :ensure_authority, only: [:edit, :update, :destroy]
 
@@ -58,6 +58,12 @@ class UsersController < ApplicationController
       format.html { redirect_to signin_path, notice: 'Account was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # GET /users/1/generate_report
+  def report
+    @hours = @user.hours_after(DateTime.now - 1.month)
+    render layout: false
   end
 
   private

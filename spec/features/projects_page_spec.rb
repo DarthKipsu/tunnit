@@ -13,7 +13,7 @@ describe 'project page' do
     before :each do
       @user2 = FactoryGirl.create(:user, email: '@', forename: 'Make')
       @team.users << @user2
-      @event2 = FactoryGirl.create(:event, project_id: @project.id, end: DateTime.now + 1, user_id: @user2.id)
+      @event2 = FactoryGirl.create(:event, project_id: @project.id, end: DateTime.now + 5.hours, user_id: @user2.id)
       visit project_path(@project)
     end
 
@@ -22,17 +22,17 @@ describe 'project page' do
     end
 
     it 'displays total hours used for a project' do
-      expect(page).to have_content 'Total hours used: 168.0 h'
+      expect(page).to have_content 'Total hours used: 7.0 h'
     end
 
     it 'displays hours used by each team member' do
-      expect(page).to have_content 'Mikko Makkonen 144.0h'
-      expect(page).to have_content 'Make Makkonen 24.0h'
+      expect(page).to have_content 'Mikko Makkonen 2.0h'
+      expect(page).to have_content 'Make Makkonen 5.0h'
     end
 
     describe 'hour allocations' do
       it 'allocates hours with a new allocation when none have been allocated' do
-        fill_in 'allocate-1', with: 40
+        fill_in 'allocate-1', with: 1
         expect{ click_button 'button-1' }.to change{ Allocation.count }.by 1
       end
 
