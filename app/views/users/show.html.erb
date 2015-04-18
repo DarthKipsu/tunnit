@@ -17,7 +17,7 @@
     <%= link_to 'Delete account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' unless @user != current_user %>
 </div>
 <div class="col-md-12">
-<%= form_tag('report.pdf', { class:'form-inline', method: :get, format: 'pdf'}) do %>
+    <%= form_tag("#{@user.id}/report.pdf", { class:'form-inline', method: :get, format: 'pdf'}) do %>
     <div class="form-group">
         <%= text_field_tag :start_time, '', class: 'form-control datepicker-no-hours', placeholder: 'Beginning from' %>
     </div>
