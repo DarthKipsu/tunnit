@@ -7,14 +7,28 @@
 <p>
 <strong>Total hours used:</strong>
 <%= sprintf "%.1f", @project.total_hours_used %> h
-</p><br>
+</p>
 </div>
 <div class="col-md-4">
     <br>
     <%= link_to 'Edit project', edit_project_path(@project), class: 'btn btn-default' %>
     <%= link_to 'Delete project', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
 </div>
-<div class="row">
+<div class="col-md-12 well">
+    <%= form_tag("#{@project.id}/report.pdf", { class:'form-inline', method: :get, format: 'pdf'}) do %>
+    <div class="form-group">
+        <%= text_field_tag :start_time, '', class: 'form-control datepicker-no-hours', placeholder: 'Beginning from' %>
+    </div>
+    <div class="form-group">
+        <%= text_field_tag :end_time, '', class: 'form-control datepicker-no-hours', placeholder: 'until' %>
+    </div>
+    <div class="form-group">
+        <%= submit_tag 'Generate report', class: 'btn btn-default' %>
+    </div>
+<% end %>
+</div>
+<div class="col-md-12">
+    <h4>Allocate hours</h4>
     <% @project.hours_used_by_user.each do |user| %>
         <div class="col-md-12">
             <div class="col-md-2 no-wrap">

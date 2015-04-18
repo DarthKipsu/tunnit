@@ -27,4 +27,20 @@ describe 'Report generation' do
       expect(page).to have_content 'Other project 2.0 hours'
     end
   end
+
+  describe 'creating project monthly report' do
+    before :each do
+      @team = FactoryGirl.create(:team)
+      @team.users << @user
+      visit "/projects/1/report/?start_time=1-1-2015&end_time=1-1-2020"
+    end
+
+    it 'displays project users name on report' do
+      expect(page).to have_content 'Mikko Makkonen 2.0 hours'
+    end
+
+    it 'displays correct total hours' do
+      expect(page).to have_content 'Total hours: 2.0 h'
+    end
+  end
 end

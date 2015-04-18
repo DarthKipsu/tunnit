@@ -24,6 +24,19 @@ class Project < ActiveRecord::Base
     add_allocations hours
   end
 
+  def hours_between(start_time, end_time)
+    hours = Hash.new
+    hours[:users] = {}
+    total_hours = 0;
+    users.each do |u|
+      hours_by_user = u.hours_between(start_time, end_time)[:projects][self.name.to_sym]
+      hours[:users]["#{u.forename} #{u.surname}"] = hours_by_user
+      total_hours += hours_by_user
+    end
+    hours[:total] = total_hours
+    hours
+  end
+
   private
   def create_hours_hash
     hours = {}

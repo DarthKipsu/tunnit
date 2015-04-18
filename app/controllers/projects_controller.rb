@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :ensure_that_signed_in
-  before_action :set_project, only: [:show, :edit, :hours, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :hours, :update, :destroy, :report]
   before_action :set_teams, only: [:new, :edit, :create, :update]
   before_action :set_allocation, only: [:allocate, :deallocate]
 
@@ -80,6 +80,14 @@ class ProjectsController < ApplicationController
   def deallocate
     @allocation.destroy
     redirect_to :back, notice: "Allocations for #{params[:name]} removed"
+  end
+
+  # GET /projects/1/generate_report
+  def report
+    @start = DateTime.parse params[:start_time]
+    @end = DateTime.parse params[:end_time]
+    @hours = @project.hours_between(@start, @end)
+    render layout: false
   end
 
   private
