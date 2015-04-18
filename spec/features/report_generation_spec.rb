@@ -11,7 +11,9 @@ describe 'Report generation' do
 
   describe 'creating personal monthly report' do
     before :each do
-      visit generate_report_path(@user)
+      fill_in 'start_time', with: (Time.now - 1.week).to_s
+      fill_in 'end_time', with: (Time.now).to_s
+      click_button 'Generate report'
     end
 
     it 'displays users name on report' do

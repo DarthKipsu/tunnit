@@ -39,10 +39,10 @@ class User < ActiveRecord::Base
     user.projects & self.projects
   end
 
-  def hours_after(date)
+  def hours_between(start_date, end_date)
     hours = { total: 0, projects: Hash.new(0) }
     events.map do |e|
-      if e.start > date.beginning_of_day
+      if e.start > start_date.beginning_of_day && e.end < end_date.end_of_day
         hours[:total] += e.duration
         hours[:projects][e.title.to_sym] += e.duration
       end

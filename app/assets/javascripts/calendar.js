@@ -54,8 +54,13 @@ var loadCalendar = function() {
     $('#event-start, #event-duration').tooltip();
 
     $('.datepicker').datetimepicker({
-        format: 'D-MM-YYYY h:mm a',
+        format: 'D-M-YYYY H:mm',
         sideBySide: true,
+        calendarWeeks: true
+    });
+
+    $('.datepicker-no-hours').datetimepicker({
+        format: 'D-M-YYYY',
         calendarWeeks: true
     });
 }

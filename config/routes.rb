@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   get 'projects', to: 'teams#index'
   get 'users', to: 'teams#index'
   get 'teams/:id/add_member', to: 'team_requests#new', as: :add_member
-  get 'users/:id/report', to: 'users#report', as: :generate_report
+  get 'users/:id/report', to: 'users#report', as: :gen_report_html
+  get 'users/:id/report.pdf', to: 'users#report', as: :generate_report
   post 'teams/:id/add_member', to: 'team_requests#create'
   post 'teams/:id/leave', to: 'teams#leave', as: :leave_team
   post 'team_requests/accept', to: 'team_requests#accept', as: :accept_team

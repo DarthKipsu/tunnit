@@ -62,7 +62,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/generate_report
   def report
-    @hours = @user.hours_after(DateTime.now - 1.month)
+    @start = DateTime.parse params[:start_time]
+    @end = DateTime.parse params[:end_time]
+    @hours = @user.hours_between(@start, @end)
     render layout: false
   end
 
