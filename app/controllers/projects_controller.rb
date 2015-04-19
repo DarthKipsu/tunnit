@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  include ReportHelper
   before_action :ensure_that_signed_in
   before_action :set_project, only: [:show, :edit, :hours, :update, :destroy, :report]
   before_action :set_teams, only: [:new, :edit, :create, :update]
@@ -84,10 +85,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/generate_report
   def report
-    @start = DateTime.parse params[:start_time]
-    @end = DateTime.parse params[:end_time]
-    @hours = @project.hours_between(@start, @end)
-    render layout: false
+    create_report_for params, @project
   end
 
   private

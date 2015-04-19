@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include ReportHelper
   before_action :set_user, only: [:show, :edit, :update, :destroy, :report]
   before_action :ensure_that_signed_in, except: [:new, :create]
   before_action :ensure_authority, only: [:edit, :update, :destroy]
@@ -62,10 +63,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/generate_report
   def report
-    @start = DateTime.parse params[:start_time]
-    @end = DateTime.parse params[:end_time]
-    @hours = @user.hours_between(@start, @end)
-    render layout: false
+    create_report_for params, @user
   end
 
   private
