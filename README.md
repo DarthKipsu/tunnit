@@ -14,7 +14,7 @@ Preview the app in action at [Time tracker in Heroku](https://tunnit.herokuapp.c
 Usage
 -----
 
-Check out the users manual at [Tunnit wiki page](wiki/Users-manual)
+Check out the users manual at [Tunnit wiki page](../../wiki/Users-manual)
 
 Contribute
 ---------
